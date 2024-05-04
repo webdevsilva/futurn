@@ -3,8 +3,9 @@ FROM ubuntu:18.04
 # Install python and pip
 RUN apt-get update && apt-get install -y python3.8 python3-pip
 
-# Set python 3.8 as the default version
+# Set python 3.8 and pip3 as the default versions
 RUN update-alternatives --install /usr/bin/python python /usr/bin/python3.8 1
+RUN update-alternatives --install /usr/bin/pip pip /usr/bin/pip3 1
 
 # Set the working directory
 WORKDIR /usr/src/app
