@@ -1,9 +1,9 @@
 from playwright.async_api import async_playwright
 from solver import solver
-from fastapi import FastAPI,Request
+from fastapi import FastAPI, Request
+import uvicorn
 
 app = FastAPI()
-
 
 @app.get("/")
 async def root():
@@ -11,7 +11,6 @@ async def root():
         "Status": 200,
         "Data":{}
     }
-
 
 @app.post("/turnstile/{id:str}")
 async def read_item(id:str,request:Request):
@@ -42,3 +41,6 @@ async def read_item(id:str,request:Request):
             "Status": 500,
             "Data": {"error": str(e)}
         }
+
+if __name__ == "__main__":
+    uvicorn.run(app, host="0.0.0.0", port=8000)  # Change port number as needed
